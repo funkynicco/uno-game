@@ -1,0 +1,31 @@
+.app--board > h3 {
+    text-align: center;
+}
+
+.app--card {
+    position: relative;
+    display: inline-block;
+    width: calc(167px * 0.7);
+    height: calc(256px * 0.7);
+    background-size: contain;
+    margin: 3px;
+}
+
+.app--card-selectable {
+    top: -10px;
+}
+
+.app--card-outline {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 14px;
+    box-shadow: #000 0 0 25px;
+    z-index: 1000;
+    /*background: #333;*/
+    /*mix-blend-mode: hard-light;*/
+}
+
+.app--center {
+    text-align: center;
+}
