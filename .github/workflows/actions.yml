@@ -21,7 +21,7 @@ jobs:
         run: docker build --tag uno-game --build-arg "BUILD_NUMBER=${{github.run_number}}" .
 
       - name: Stop existing container
-        run: docker compose stop
+        run: docker-compose down
         working-directory: /app/uno-game
         continue-on-error: true
 
@@ -29,5 +29,5 @@ jobs:
         run: cp docker-compose.yml /app/uno-game
 
       - name: Start container
-        run: docker compose up -d
+        run: docker-compose up -d
         working-directory: /app/uno-game
