@@ -1,0 +1,9 @@
+version: '3.5'
+services:
+  unogame:
+    image: uno-game
+    restart: unless-stopped
+    ports:
+      - 9495:80/tcp
+    # volumes:
+    #   - /app/oversight/appsettings.Production.json:/app/api/appsettings.Production.json

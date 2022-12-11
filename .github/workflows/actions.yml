@@ -1,0 +1,33 @@
+name: ci-uno-production
+
+on:
+  push:
+    branches: [ release/production ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout github repository
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+
+      - name: Build project
+        run: docker build --tag uno-game --build-arg "BUILD_NUMBER=${{github.run_number}}" .
+
+      - name: Stop existing container
+        run: docker compose stop
+        working-directory: /app/uno-game
+        continue-on-error: true
+
+      - name: Copy docker-compose.yml
+        run: cp docker-compose.yml /app/uno-game
+
+      - name: Start container
+        run: docker compose up -d
+        working-directory: /app/uno-game
