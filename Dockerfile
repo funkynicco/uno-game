@@ -2,7 +2,11 @@ FROM ubuntu:22.04 AS build
 ARG BUILD_NUMBER
 
 # Install dependencies
-RUN apt-get update ; apt-get install curl -y ; curl -fsSL https://deb.nodesource.com/setup_19.x | bash - && apt-get install -y nodejs
+RUN \
+    apt-get purge libappstream3 ; \
+    apt-get update ; \
+    apt-get install curl -y ; \
+    curl -fsSL https://deb.nodesource.com/setup_19.x | bash - && apt-get install -y nodejs
 
 WORKDIR /build/frontend
 COPY ./frontend/ .
